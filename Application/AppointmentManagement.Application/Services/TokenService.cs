@@ -23,11 +23,9 @@ namespace AppointmentManagement.Application.Services
 		{
 			if (user == null) throw new ArgumentNullException(nameof(user));
 
-			// Create a symmetric security key
 			var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
 			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-			// Define claims for the token
 			var claims = new[]
 			{
 				new Claim(JwtRegisteredClaimNames.Sub, user.Username),
@@ -35,10 +33,8 @@ namespace AppointmentManagement.Application.Services
 				new Claim(ClaimTypes.Name, user.Username)
 			};
 
-			// Token expiration
 			var tokenExpiration = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpirationInMinutes);
 
-			// Generate the JWT token
 			var tokenDescriptor = new JwtSecurityToken(
 				issuer: _jwtSettings.Issuer,
 				audience: _jwtSettings.Audience,
@@ -49,7 +45,6 @@ namespace AppointmentManagement.Application.Services
 
 			var token = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
 
-			// Return the token response
 			return new TokenResponse
 			{
 				Token = token,

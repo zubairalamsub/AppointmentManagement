@@ -27,8 +27,6 @@ namespace AppointmentManagement.Application.Services
 			{
 				return "Username already exists";
 			}
-
-			// Use PasswordHasher to hash the password
 			var user = new User
 			{
 				Username = registerRequest.Username,

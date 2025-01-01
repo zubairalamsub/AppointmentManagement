@@ -12,7 +12,7 @@ namespace AppointmentManagement.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
 	{
-		private readonly AppDbContext _context; // Replace with your actual DbContext
+		private readonly AppDbContext _context;
 
 		public UserRepository(AppDbContext context)
 		{
