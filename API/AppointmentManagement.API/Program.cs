@@ -20,7 +20,6 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-// Add services to the container
 builder.Services.AddControllers();
 
 // Configure Swagger
@@ -103,14 +102,14 @@ builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI(options =>
 	{
 		options.SwaggerEndpoint("/swagger/v1/swagger.json", "Appointment Management API V1");
-		options.RoutePrefix = "swagger"; // This ensures the Swagger UI is hosted at /swagger
+		options.RoutePrefix = "swagger"; 
 	});
 }
 
